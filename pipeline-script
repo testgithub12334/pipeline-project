@@ -1,0 +1,24 @@
+pipeline {
+    //agentany
+    agent {
+    label 'slave-1'
+    }
+    parameters{
+        parameters {
+  choice choices: ['main', 'master', 'dev'], description: 'passing the branch name', name: 'branch name'
+  string defaultValue: 'krishna', description: 'passing the person name', name: 'krishna'
+}
+stages{
+    satge('checkoutcode') {
+        steps{
+            gitbranch:"${params Branchname}"
+        }
+        }
+        stage ('Display person name')
+        {
+            steps{
+                sh "echo The person Name is:${}"
+                sh "echo The person Name is:${params personname}"
+              }
+    }
+}
